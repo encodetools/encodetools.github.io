@@ -219,7 +219,7 @@
             const formData = new FormData(contactForm);
 
             // Kirim data ke contact.php menggunakan fetch API
-            fetch('contact.php', {
+            fetch('/contact.php', {
                 method: 'POST',
                 body: formData
             })
