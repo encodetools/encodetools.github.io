@@ -5,16 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Image to Base64 Converter</title>
     <meta name="description" content="Contact us with any questions, suggestions, or issues about our Image to Base64 Converter tool.">
-    <link rel="canonical" href="https://encodetools.github.io/contact.html">
+    <link rel="canonical" href="https://yourdomain.com/contact.html">
     <meta property="og:title" content="Contact Us - Image to Base64 Converter">
     <meta property="og:description" content="Contact us with any questions, suggestions, or issues about our Image to Base64 Converter tool.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://encodetools.github.io/contact.html">
+    <meta property="og:url" content="https://yourdomain.com/contact.html">
+    
+    <!-- AdSense Main Script (Jangan lupa tambahin ini kalau belum ada) -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9811928058167271"
-     crossorigin="anonymous"></script>
+         crossorigin="anonymous"></script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="icon" type="image/png" href="/favicon.png">
     <script>
         tailwind.config = {
             theme: {
@@ -73,17 +75,17 @@
     </nav>
 
     <!-- AdSense Top Banner -->
-    <!-- Sponsored -->
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-9811928058167271"
-         data-ad-slot="2192946549"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-
+    <div class="container mx-auto px-4 py-4 text-center">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-9811928058167271"
+             data-ad-slot="2192946549"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
 
     <!-- Contact Section -->
     <section class="py-12 bg-white">
@@ -95,6 +97,7 @@
                     We'd love to hear from you! Whether you have a question, suggestion, or issue, please fill out the form below and we'll get back to you as soon as possible.
                 </p>
 
+                <!-- BAGIAN FORMULIR KONTAK -->
                 <form id="contactForm" class="space-y-4">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
@@ -121,29 +124,30 @@
                     </div>
                 </form>
 
+                <!-- PESAN SUKSES DAN ERROR -->
                 <div id="successMessage" class="hidden mt-6 p-4 bg-green-100 text-green-700 rounded-xl text-center">
-                    <i class="fa fa-check-circle mr-2">
-                 </i> Your message has been sent successfully! We'll get back to you as soon as possible.
+                    <i class="fa fa-check-circle mr-2"></i> Your message has been sent successfully! We'll get back to you soon.
                 </div>
-                <!-- TAMBAHKAN BARIS INI -->
+
                 <div id="errorMessage" class="hidden mt-6 p-4 bg-red-100 text-red-700 rounded-xl text-center">
-                 <i class="fa fa-exclamation-circle mr-2"></i> Oops! Something went wrong. Please try again later.
-                 </div>
+                    <i class="fa fa-exclamation-circle mr-2"></i> Oops! Something went wrong. Please try again later.
+                </div>
             </div>
         </div>
     </section>
 
     <!-- AdSense Footer Banner -->
-    <!-- Sponsored -->
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-9811928058167271"
-         data-ad-slot="2192946549"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
+    <div class="container mx-auto px-4 py-4 text-center">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-9811928058167271"
+             data-ad-slot="2192946549"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
 
     <!-- Footer -->
     <footer class="bg-dark text-white py-12">
@@ -175,13 +179,13 @@
                 <div>
                     <h4 class="text-lg font-semibold mb-4">Follow Us</h4>
                     <div class="flex gap-4">
-                        <a href="https://twitter.com/encodetools" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
                             <i class="fa fa-twitter"></i>
                         </a>
-                        <a href="https://github.com/encodetools" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
                             <i class="fa fa-github"></i>
                         </a>
-                        <a href="https://www.linkedin.com/company/encodetools" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
                             <i class="fa fa-linkedin"></i>
                         </a>
                     </div>
@@ -193,12 +197,14 @@
         </div>
     </footer>
 
-        <script>
+    <!-- SCRIPT JAVASCRIPT LENGKAP -->
+    <script>
         // Mobile Menu Toggle
         const menuToggle = document.getElementById('menuToggle');
-        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenu = $('#mobileMenu'); // Kalau pakai jQuery, tapi di sini kita pakai JS biasa
+        const mobileMenuEl = document.getElementById('mobileMenu');
         menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+            mobileMenuEl.classList.toggle('hidden');
         });
 
         // Contact Form Submission with AJAX
