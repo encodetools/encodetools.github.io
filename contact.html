@@ -11,7 +11,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://yourdomain.com/contact.html">
     
-    <!-- AdSense Main Script (Jangan lupa tambahin ini kalau belum ada) -->
+    <!-- AdSense Main Script -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9811928058167271"
          crossorigin="anonymous"></script>
 
@@ -97,7 +97,7 @@
                     We'd love to hear from you! Whether you have a question, suggestion, or issue, please fill out the form below and we'll get back to you as soon as possible.
                 </p>
 
-                <!-- BAGIAN FORMULIR KONTAK -->
+                <!-- FORMULIR: Perhatikan di sini TIDAK ADA action atau method, biar JS yang ngatur -->
                 <form id="contactForm" class="space-y-4">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
@@ -197,14 +197,13 @@
         </div>
     </footer>
 
-    <!-- SCRIPT JAVASCRIPT LENGKAP -->
+    <!-- SCRIPT JAVASCRIPT LENGKAP DAN DIPERBAIKI -->
     <script>
         // Mobile Menu Toggle
         const menuToggle = document.getElementById('menuToggle');
-        const mobileMenu = $('#mobileMenu'); // Kalau pakai jQuery, tapi di sini kita pakai JS biasa
-        const mobileMenuEl = document.getElementById('mobileMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
         menuToggle.addEventListener('click', () => {
-            mobileMenuEl.classList.toggle('hidden');
+            mobileMenu.classList.toggle('hidden');
         });
 
         // Contact Form Submission with AJAX
@@ -212,41 +211,54 @@
         const successMessage = document.getElementById('successMessage');
         const errorMessage = document.getElementById('errorMessage');
 
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault(); // Mencegah form submit secara default
+        // Pastikan elemen form ditemukan sebelum menjalankan script
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault(); // Ini kuncinya: Mencegah form kirim data biasa
 
-            // Ambil data dari form
-            const formData = new FormData(contactForm);
+                // Ambil data dari form
+                const formData = new FormData(contactForm);
 
-            // Kirim data ke contact.php menggunakan fetch API
-            fetch('/contact.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.text()) // Ambil respon teks dari PHP
-            .then(data => {
-                if (data === 'success') {
-                    // Jika berhasil
-                    successMessage.classList.remove('hidden');
-                    errorMessage.classList.add('hidden');
-                    contactForm.reset(); // Reset form
-                    // Sembunyikan pesan setelah 5 detik
-                    setTimeout(() => {
+                // Tampilkan pesan loading (opsional, tapi bagus buat user)
+                // Di sini kita langsung kirim aja
+
+                // Kirim data ke contact.php
+                fetch('contact.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    if (data.trim() === 'success') {
+                        // Jika berhasil
+                        successMessage.classList.remove('hidden');
+                        errorMessage.classList.add('hidden');
+                        contactForm.reset(); // Reset form
+                        // Sembunyikan pesan setelah 5 detik
+                        setTimeout(() => {
+                            successMessage.classList.add('hidden');
+                        }, 5000);
+                    } else {
+                        // Jika gagal atau respon lain
+                        errorMessage.classList.remove('hidden');
                         successMessage.classList.add('hidden');
-                    }, 5000);
-                } else {
-                    // Jika gagal
+                    }
+                })
+                .catch(error => {
+                    // Jika ada error jaringan
+                    console.error('Error:', error);
                     errorMessage.classList.remove('hidden');
                     successMessage.classList.add('hidden');
-                }
-            })
-            .catch(error => {
-                // Jika ada error jaringan atau lainnya
-                console.error('Error:', error);
-                errorMessage.classList.remove('hidden');
-                successMessage.classList.add('hidden');
+                });
             });
-        });
+        } else {
+            console.error("Form dengan ID 'contactForm' tidak ditemukan!");
+        }
     </script>
 </body>
 </html>
