@@ -125,6 +125,10 @@
                     <i class="fa fa-check-circle mr-2">
                  </i> Your message has been sent successfully! We'll get back to you as soon as possible.
                 </div>
+                <!-- TAMBAHKAN BARIS INI -->
+                <div id="errorMessage" class="hidden mt-6 p-4 bg-red-100 text-red-700 rounded-xl text-center">
+                 <i class="fa fa-exclamation-circle mr-2"></i> Oops! Something went wrong. Please try again later.
+                 </div>
             </div>
         </div>
     </section>
@@ -189,7 +193,7 @@
         </div>
     </footer>
 
-    <script>
+        <script>
         // Mobile Menu Toggle
         const menuToggle = document.getElementById('menuToggle');
         const mobileMenu = document.getElementById('mobileMenu');
@@ -197,19 +201,45 @@
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Contact Form Submission
+        // Contact Form Submission with AJAX
         const contactForm = document.getElementById('contactForm');
         const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
+
         contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            // In a real application, you would send the form data to a server here
-            // For this example, we'll just show the success message
-            successMessage.classList.remove('hidden');
-            contactForm.reset();
-            // Hide the success message after 5 seconds
-            setTimeout(() => {
+            e.preventDefault(); // Mencegah form submit secara default
+
+            // Ambil data dari form
+            const formData = new FormData(contactForm);
+
+            // Kirim data ke contact.php menggunakan fetch API
+            fetch('contact.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text()) // Ambil respon teks dari PHP
+            .then(data => {
+                if (data === 'success') {
+                    // Jika berhasil
+                    successMessage.classList.remove('hidden');
+                    errorMessage.classList.add('hidden');
+                    contactForm.reset(); // Reset form
+                    // Sembunyikan pesan setelah 5 detik
+                    setTimeout(() => {
+                        successMessage.classList.add('hidden');
+                    }, 5000);
+                } else {
+                    // Jika gagal
+                    errorMessage.classList.remove('hidden');
+                    successMessage.classList.add('hidden');
+                }
+            })
+            .catch(error => {
+                // Jika ada error jaringan atau lainnya
+                console.error('Error:', error);
+                errorMessage.classList.remove('hidden');
                 successMessage.classList.add('hidden');
-            }, 5000);
+            });
         });
     </script>
 </body>
