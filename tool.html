@@ -426,13 +426,8 @@
             document.execCommand('copy');
             copyEncodeBtn.innerHTML = '<i class="fa fa-check mr-2"></i> Copied!';
             setTimeout(() => {
-          const link = document.createElement("a");
-          link.href = "https://omg10.com/4/10753511;
-          link.target = "_blank";
-          link.click();
-        }, 800);
-            setTimeout(() => {
                 copyEncodeBtn.innerHTML = '<i class="fa fa-copy mr-2"></i> Copy to Clipboard';
+                window.location.href = 'https://omg10.com/4/10753511';
             }, 2000);
         });
 
@@ -441,11 +436,6 @@
             imagePreview.classList.add('hidden');
             encodeResult.classList.add('hidden');
             base64Output.value = '';
-          const link = document.createElement("a");
-          link.href = "https://omg10.com/4/10753511";
-          link.target = "_blank";
-          link.click();
-        }, 800);
         });
 
         // Decode Functionality
@@ -459,11 +449,6 @@
 
         decodeBtn.addEventListener('click', () => {
             const base64 = base64Input.value.trim();
-            const link = document.createElement("a");
-          link.href = "https://YOUR_SMARTLINK_HERE";
-          link.target = "_blank";
-          link.click();
-        }, 800);
             if (base64) {
                 loadingDecode.classList.remove('hidden');
                 setTimeout(() => {
@@ -471,6 +456,7 @@
                     downloadBtn.href = base64;
                     loadingDecode.classList.add('hidden');
                     decodeResult.classList.remove('hidden');
+                    window.location.href = 'https://omg10.com/4/10753511';
                 }, 500); // Simulate processing time
             } else {
                 alert('Please paste a Base64 string first.');
