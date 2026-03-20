@@ -1,21 +1,24 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image to Base64 Converter - Free Online Tool</title>
-    <meta name="description" content="Convert images to Base64 strings or decode Base64 back to images instantly with our free, secure online tool. All processing happens in your browser.">
+    <meta name="description" content="Convert images to Base64 strings instantly with our free, fast, and secure online tool. Supports JPG, PNG, GIF, WebP. No uploads required—all processing happens in your browser.">
     <meta name="keywords" content="image to base64, base64 converter, image encoder, base64 decoder, online image tool">
     <link rel="canonical" href="https://encodetools.github.io/tool.html">
     <meta property="og:title" content="Image to Base64 Converter - Free Online Tool">
-    <meta property="og:description" content="Convert images to Base64 strings or decode Base64 back to images instantly. No uploads, secure, and free.">
+    <meta property="og:description" content="Convert images to Base64 strings instantly. No uploads, secure, and free.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://encodetools.github.io/tool.html">
+    
+    <!-- AdSense Main Script -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9811928058167271"
-     crossorigin="anonymous"></script>
+         crossorigin="anonymous"></script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="icon" type="image/png" href="/favicon.png">
     <script>
         tailwind.config = {
             theme: {
@@ -41,12 +44,13 @@
             .card-shadow {
                 box-shadow: 0 10px 25px -5px rgba(22, 93, 255, 0.1), 0 8px 10px -6px rgba(22, 93, 255, 0.05);
             }
-            .loading-spinner {
-                border-top-color: #165DFF;
-                animation: spin 1s linear infinite;
+            .faq-answer {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
             }
-            @keyframes spin {
-                to { transform: rotate(360deg); }
+            .faq-active .faq-answer {
+                max-height: 200px;
             }
         }
     </style>
@@ -81,96 +85,126 @@
     </nav>
 
     <!-- AdSense Top Banner -->
-    <!-- Sponsored -->
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-9811928058167271"
-         data-ad-slot="2192946549"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
+    <div class="container mx-auto px-4 py-4 text-center">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-9811928058167271"
+             data-ad-slot="2192946549"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
 
     <!-- Tool Section -->
     <section class="py-12 bg-white">
-        <div class="container mx-auto px-4">
+        <div class="container mx-auto px-4 max-w-5xl">
             <h1 class="text-3xl md:text-4xl font-bold text-center mb-8">Image to Base64 Converter</h1>
             
-            <div class="max-w-4xl mx-auto bg-light rounded-xl p-6 md:p-8 card-shadow">
-                <!-- Tabs -->
-                <div class="flex border-b border-gray-200 mb-6">
-                    <button class="tab-btn active px-4 py-2 font-medium text-primary border-b-2 border-primary" data-tab="encode">Encode Image to Base64</button>
-                    <button class="tab-btn px-4 py-2 font-medium text-gray-500 hover:text-dark transition-colors" data-tab="decode">Decode Base64 to Image</button>
-                </div>
+            <div class="bg-light rounded-xl p-6 md:p-8 card-shadow mb-12">
+                <p class="text-gray-600 mb-6 text-center">
+                    Convert any image to Base64 string instantly—no uploads required, all processing runs directly in your browser for maximum security and speed.
+                </p>
 
-                <!-- Encode Tab -->
-                <div class="tab-content active" id="encode-tab">
-                    <div class="mb-6">
-                        <label class="block text-lg font-medium mb-2">Upload Image</label>
-                        <input type="file" id="imageInput" accept="image/*" class="hidden" />
-                        <label for="imageInput" class="inline-block bg-primary hover:bg-secondary text-white font-medium py-2 px-6 rounded-xl cursor-pointer transition-all duration-300">
-                            <i class="fa fa-upload mr-2"></i> Select Image
+                <!-- Tool Interface -->
+                <div class="space-y-6">
+                    <div class="border-2 border-dashed border-gray-200 rounded-xl p-6 text-center hover:border-primary transition-colors">
+                        <i class="fa fa-cloud-upload text-primary text-4xl mb-4"></i>
+                        <h3 class="text-xl font-medium mb-2">Upload Your Image</h3>
+                        <p class="text-gray-500 mb-4">Supports JPG, PNG, GIF, WebP, and BMP (max size: 5MB)</p>
+                        <input type="file" id="imageUpload" accept="image/*" class="hidden">
+                        <label for="imageUpload" class="bg-primary hover:bg-secondary text-white font-medium py-2 px-6 rounded-xl cursor-pointer transition-all duration-300">
+                            Select Image <i class="fa fa-file-image-o ml-2"></i>
                         </label>
-                        <p class="text-gray-500 mt-2">Supports JPG, PNG, GIF, WebP. Max recommended size: 5MB</p>
                     </div>
 
-                    <div id="imagePreview" class="mb-6 hidden">
-                        <h3 class="text-lg font-medium mb-2">Preview</h3>
-                        <img id="previewImg" src="" alt="Preview" class="max-w-full max-h-64 rounded-xl border border-gray-200">
-                    </div>
-
-                    <div id="loading" class="mb-6 hidden">
-                        <div class="flex items-center gap-2 text-primary">
-                            <div class="w-6 h-6 border-2 border-gray-200 rounded-full loading-spinner"></div>
-                            <span>Processing...</span>
+                    <div id="previewSection" class="hidden">
+                        <h3 class="text-xl font-medium mb-3">Image Preview</h3>
+                        <div class="flex justify-center mb-4">
+                            <img id="imagePreview" class="max-w-full max-h-64 rounded-lg border border-gray-200" src="" alt="Image Preview">
                         </div>
                     </div>
 
-                    <div id="encodeResult" class="mb-6 hidden">
-                        <h3 class="text-lg font-medium mb-2">Base64 String</h3>
-                        <textarea id="base64Output" readonly class="w-full h-48 p-4 border border-gray-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-primary/50" placeholder="Your Base64 string will appear here..."></textarea>
-                        <div class="flex gap-3 mt-3">
-                            <button id="copyEncodeBtn" class="bg-primary hover:bg-secondary text-white font-medium py-2 px-6 rounded-xl transition-all duration-300">
-                                <i class="fa fa-copy mr-2"></i> Copy to Clipboard
+                    <div id="resultSection" class="hidden">
+                        <h3 class="text-xl font-medium mb-3">Base64 Result</h3>
+                        <div class="relative">
+                            <textarea id="base64Result" rows="8" class="w-full p-3 border border-gray-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none" readonly></textarea>
+                            <button id="copyButton" class="absolute top-3 right-3 bg-gray-200 hover:bg-gray-300 p-2 rounded-lg transition-colors">
+                                <i class="fa fa-copy text-gray-700"></i>
                             </button>
-                            <button id="resetEncodeBtn" class="bg-gray-200 hover:bg-gray-300 text-dark font-medium py-2 px-6 rounded-xl transition-all duration-300">
-                                <i class="fa fa-refresh mr-2"></i> Reset
+                            <button id="downloadButton" class="absolute bottom-3 right-3 bg-primary hover:bg-secondary text-white p-2 rounded-lg transition-colors">
+                                <i class="fa fa-download mr-1"></i> Copy as TXT
                             </button>
                         </div>
+                        <p id="copyMessage" class="hidden mt-2 text-green-600 text-center">
+                            <i class="fa fa-check-circle mr-1"></i> Copied to clipboard!
+                        </p>
                     </div>
                 </div>
+            </div>
 
-                <!-- Decode Tab -->
-                <div class="tab-content hidden" id="decode-tab">
-                    <div class="mb-6">
-                        <label class="block text-lg font-medium mb-2">Paste Base64 String</label>
-                        <textarea id="base64Input" class="w-full h-48 p-4 border border-gray-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-primary/50" placeholder="Paste your Base64 string here..."></textarea>
-                    </div>
-
-                    <div class="flex gap-3 mb-6">
-                        <button id="decodeBtn" class="bg-primary hover:bg-secondary text-white font-medium py-2 px-6 rounded-xl transition-all duration-300">
-                            <i class="fa fa-code mr-2"></i> Decode to Image
+            <!-- NEW: FAQ SECTION -->
+            <div class="bg-light rounded-xl p-6 md:p-8 card-shadow">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">Frequently Asked Questions (FAQ)</h2>
+                
+                <div class="space-y-4">
+                    <!-- FAQ Item 1 -->
+                    <div class="faq-item border-b border-gray-200 pb-4">
+                        <button class="faq-toggle w-full flex justify-between items-center text-left font-medium text-lg">
+                            <span><i class="fa fa-question-circle text-primary mr-2"></i> What image formats are supported?</span>
+                            <i class="fa fa-chevron-down text-primary transition-transform duration-300"></i>
                         </button>
-                        <button id="resetDecodeBtn" class="bg-gray-200 hover:bg-gray-300 text-dark font-medium py-2 px-6 rounded-xl transition-all duration-300">
-                            <i class="fa fa-refresh mr-2"></i> Reset
-                        </button>
-                    </div>
-
-                    <div id="loadingDecode" class="mb-6 hidden">
-                        <div class="flex items-center gap-2 text-primary">
-                            <div class="w-6 h-6 border-2 border-gray-200 rounded-full loading-spinner"></div>
-                            <span>Processing...</span>
+                        <div class="faq-answer mt-2 text-gray-600">
+                            Our tool supports all common image formats, including JPG, PNG, GIF, WebP, BMP, and TIFF. The maximum file size per image is 5MB to ensure fast processing.
                         </div>
                     </div>
 
-                    <div id="decodeResult" class="mb-6 hidden">
-                        <h3 class="text-lg font-medium mb-2">Decoded Image</h3>
-                        <img id="decodedImg" src="" alt="Decoded Image" class="max-w-full max-h-64 rounded-xl border border-gray-200">
-                        <div class="mt-3">
-                            <a id="downloadBtn" href="#" download="decoded-image.png" class="inline-block bg-primary hover:bg-secondary text-white font-medium py-2 px-6 rounded-xl transition-all duration-300">
-                                <i class="fa fa-download mr-2"></i> Download Image
-                            </a>
+                    <!-- FAQ Item 2 -->
+                    <div class="faq-item border-b border-gray-200 pb-4">
+                        <button class="faq-toggle w-full flex justify-between items-center text-left font-medium text-lg">
+                            <span><i class="fa fa-question-circle text-primary mr-2"></i> Is my image data safe?</span>
+                            <i class="fa fa-chevron-down text-primary transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer mt-2 text-gray-600">
+                            Yes! All image processing happens directly in your browser—we never upload your images to any server. This means your data stays private and secure at all times.
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 3 -->
+                    <div class="faq-item border-b border-gray-200 pb-4">
+                        <button class="faq-toggle w-full flex justify-between items-center text-left font-medium text-lg">
+                            <span><i class="fa fa-question-circle text-primary mr-2"></i> How do I use the Base64 string?</span>
+                            <i class="fa fa-chevron-down text-primary transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer mt-2 text-gray-600">
+                            Base64 strings can be used directly in HTML, CSS, or JavaScript. For example:
+                            <ul class="mt-2 list-disc list-inside space-y-1">
+                                <li>In HTML: <code>&lt;img src="data:image/png;base64,/9j/4AAQSkZJRgABAQ..."&gt;</code></li>
+                                <li>In CSS: <code>background-image: url('data:image/png;base64,/9j/4AAQSkZJRgABAQ...');</code></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 4 -->
+                    <div class="faq-item border-b border-gray-200 pb-4">
+                        <button class="faq-toggle w-full flex justify-between items-center text-left font-medium text-lg">
+                            <span><i class="fa fa-question-circle text-primary mr-2"></i> Why is my Base64 string so long?</span>
+                            <i class="fa fa-chevron-down text-primary transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer mt-2 text-gray-600">
+                            Base64 encoding converts binary data into text, which increases the file size by about 33%. This is normal—longer images or higher quality images will produce longer Base64 strings.
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 5 -->
+                    <div class="faq-item">
+                        <button class="faq-toggle w-full flex justify-between items-center text-left font-medium text-lg">
+                            <span><i class="fa fa-question-circle text-primary mr-2"></i> Can I convert Base64 back to an image?</span>
+                            <i class="fa fa-chevron-down text-primary transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer mt-2 text-gray-600">
+                            Yes! We're working on a reverse tool (Base64 to Image) that will be available soon. For now, you can use online converters or paste the Base64 string into a text editor, save it with a <code>.txt</code> extension, then use a converter tool to turn it back into an image.
                         </div>
                     </div>
                 </div>
@@ -178,159 +212,18 @@
         </div>
     </section>
 
-    <!-- AdSense Middle Rectangle -->
-    <!-- Sponsored -->
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-9811928058167271"
-         data-ad-slot="2192946549"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-
-
-    <!-- SEO Content -->
-    <section class="py-12 bg-white">
-        <div class="container mx-auto px-4 max-w-4xl">
-            <h2 class="text-3xl font-bold mb-6">Everything You Need to Know About Image to Base64 Conversion</h2>
-            
-            <p class="text-gray-600 mb-4">
-                Image to Base64 conversion is a powerful technique that allows you to convert image files into text-based strings. This process, known as Base64 encoding, transforms binary image data into a set of ASCII characters, making it easy to embed images directly into HTML, CSS, JSON, or other text-based formats without needing separate image files or external URLs.
-            </p>
-
-            <h3 class="text-2xl font-semibold mt-8 mb-4">Why Use Base64 Encoding for Images?</h3>
-            <p class="text-gray-600 mb-4">
-                There are several reasons why developers and designers choose to use Base64 encoded images:
-            </p>
-            <ul class="list-disc pl-6 text-gray-600 mb-4 space-y-2">
-                <li><strong>Reduced HTTP Requests:</strong> Embedding images as Base64 strings eliminates the need for separate HTTP requests to load image files, which can improve page load times, especially for small images like icons or logos.</li>
-                <li><strong>Portability:</strong> Base64 strings can be easily shared, copied, and pasted, making them ideal for use in emails, documentation, or code snippets where external image links might break.</li>
-                <li><strong>Security:</strong> Since the image data is embedded directly in the text, there's no risk of broken links or image hotlinking, and you don't need to worry about image files being deleted or moved.</li>
-                <li><strong>Offline Use:</strong> Base64 encoded images work offline, as they don't rely on external servers or internet connections to load.</li>
-                            </ul>
-
-            <h3 class="text-2xl font-semibold mt-8 mb-4">How Does Image to Base64 Conversion Work?</h3>
-            <p class="text-gray-600 mb-4">
-                Base64 encoding works by breaking binary image data into 6-bit chunks, each of which is mapped to a corresponding ASCII character from a set of 64 characters (hence the name "Base64"). This process converts the binary data into a text string that can be easily transmitted, stored, or embedded in text-based formats.
-            </p>
-            <p class="text-gray-600 mb-4">
-                When you use our tool to convert an image to Base64, the image file is read as binary data, encoded into a Base64 string, and displayed for you to copy. To use the Base64 string in your code, you can insert it into an HTML <code>&lt;img&gt;</code> tag like this:
-            </p>
-            <pre class="bg-gray-100 p-4 rounded-xl overflow-x-auto mb-4">
-&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA..." alt="Description"&gt;
-            </pre>
-            <p class="text-gray-600 mb-4">
-                Or in CSS:
-            </p>
-            <pre class="bg-gray-100 p-4 rounded-xl overflow-x-auto mb-4">
-.background-image {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...');
-}
-            </pre>
-
-            <h3 class="text-2xl font-semibold mt-8 mb-4">When Should You Use Base64 Encoded Images?</h3>
-            <p class="text-gray-600 mb-4">
-                While Base64 encoding has many benefits, it's not always the best choice for every image. Here are some guidelines to help you decide when to use it:
-            </p>
-            <ul class="list-disc pl-6 text-gray-600 mb-4 space-y-2">
-                <li><strong>Small Images:</strong> Base64 encoding is most effective for small images like icons, logos, or decorative elements. Larger images will result in very long Base64 strings, which can increase the size of your HTML/CSS files and slow down page load times.</li>
-                <li><strong>Images Used Once:</strong> If an image is used only once on a page, embedding it as a Base64 string can reduce HTTP requests. If it's used multiple times, it's more efficient to use a separate image file that can be cached by the browser.</li>
-                <li><strong>Portability is Important:</strong> If you need to share or embed an image in a context where external links might break, Base64 encoding is a great option.</li>
-            </ul>
-
-            <h3 class="text-2xl font-semibold mt-8 mb-4">Common Use Cases for Image to Base64 Conversion</h3>
-            <p class="text-gray-600 mb-4">
-                Image to Base64 conversion is used in a wide range of applications, including:
-            </p>
-            <ul class="list-disc pl-6 text-gray-600 mb-4 space-y-2">
-                <li><strong>Web Development:</strong> Embedding small images directly into HTML or CSS to reduce HTTP requests and improve page performance.</li>
-                <li><strong>Email Marketing:</strong> Embedding images in emails to avoid broken links and ensure images display correctly even if the recipient's email client blocks external images.</li>
-                <li><strong>Mobile App Development:</strong> Embedding images in mobile app code to reduce the number of files and improve app performance.</li>
-                <li><strong>Data Storage:</strong> Storing image data in text-based databases or files where binary data is not supported.</li>
-            </ul>
-
-            <h3 class="text-2xl font-semibold mt-8 mb-4">Why Choose Our Image to Base64 Converter?</h3>
-            <p class="text-gray-600 mb-4">
-                There are many online tools available for converting images to Base64, but our tool stands out for several reasons:
-            </p>
-            <ul class="list-disc pl-6 text-gray-600 mb-4 space-y-2">
-                <li><strong>100% Secure & Private:</strong> All processing happens locally in your browser. We never upload or store your images on our servers, so your data remains private and secure.</li>
-                <li><strong>Fast & Efficient:</strong> Our tool processes images instantly, so you don't have to wait for uploads or server processing.</li>
-                <li><strong>Supports All Major Formats:</strong> We support JPG, PNG, GIF, and WebP images, so you can convert any type of image you need.</li>
-                <li><strong>Encode & Decode:</strong> Not only can you convert images to Base64, but you can also decode Base64 strings back to images, making our tool a complete solution for all your Base64 needs.</li>
-                <li><strong>Easy to Use:</strong> Our simple, intuitive interface makes it easy to convert images or decode Base64 strings with just a few clicks.</li>
-                <li><strong>Fully Responsive:</strong> Use our tool on any device—desktop, tablet, or mobile phone—with a fully responsive interface that adapts to all screen sizes.</li>
-            </ul>
-
-            <p class="text-gray-600 mb-4">
-                Whether you're a web developer, designer, email marketer, or just someone who needs to convert images to Base64, our tool is the perfect solution. Try it today and see how easy and convenient it is to use!
-            </p>
-        </div>
-    </section>
-
-    <!-- FAQ Schema Markup -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-            {
-                "@type": "Question",
-                "name": "What is Base64 encoding for images?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Base64 is a binary-to-text encoding scheme that converts image data into a string of ASCII characters. This allows images to be embedded directly into HTML, CSS, or JSON files without needing separate image files or external URLs. It's commonly used for small icons, logos, or images in emails to avoid broken links."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Is my image data secure?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes, absolutely. All image processing is done locally in your web browser. We never upload your images to our servers, and we do not store any of your data. Your images and generated Base64 strings remain private and are only accessible to you."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Which image formats are supported?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Our tool supports all major image formats, including JPG (JPEG), PNG, GIF, and WebP. Whether you're working with a small icon or a large graphic, you can convert it to Base64 or decode a Base64 string back to an image."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Are there any file size limits?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "While we don't impose strict file size limits, very large images may take longer to process in your browser and result in extremely long Base64 strings. For optimal performance, we recommend using this tool for images up to 5MB. For larger images, consider using traditional file hosting instead."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Can I decode a Base64 string back to an image?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes! Our tool supports both encoding and decoding. Simply paste your Base64 string into the 'Decode Base64 to Image' section, and we'll instantly generate a preview of the original image for you to view or download."
-                }
-            }
-        ]
-    }
-    </script>
-
-    <!-- AdSense Footer Banner -->
-    <!-- Sponsored -->
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-9811928058167271"
-         data-ad-slot="2192946549"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
+    <!-- AdSense Middle Banner -->
+    <div class="container mx-auto px-4 py-4 text-center">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-9811928058167271"
+             data-ad-slot="2192946549"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
 
     <!-- Footer -->
     <footer class="bg-dark text-white py-12">
@@ -362,7 +255,7 @@
                 <div>
                     <h4 class="text-lg font-semibold mb-4">Follow Us</h4>
                     <div class="flex gap-4">
-                        <a href="https://github.com/encodetools" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
                             <i class="fa fa-github"></i>
                         </a>
                     </div>
@@ -374,6 +267,7 @@
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script>
         // Mobile Menu Toggle
         const menuToggle = document.getElementById('menuToggle');
@@ -381,97 +275,83 @@
         menuToggle.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
-
-        // Tab Functionality
-        const tabBtns = document.querySelectorAll('.tab-btn');
-        const tabContents = document.querySelectorAll('.tab-content');
-        tabBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const tab = btn.dataset.tab;
-                // Remove active class from all tabs and contents
-                tabBtns.forEach(b => b.classList.remove('active', 'text-primary', 'border-b-2', 'border-primary'));
-                tabContents.forEach(c => c.classList.add('hidden'));
-                // Add active class to clicked tab and corresponding content
-                btn.classList.add('active', 'text-primary', 'border-b-2', 'border-primary');
-                document.getElementById(`${tab}-tab`).classList.remove('hidden');
-            });
+        // Mobile Menu Toggle (sudah ada di kode kamu)
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
         });
 
-        // Encode Functionality
-        const imageInput = document.getElementById('imageInput');
-        const imagePreview = document.getElementById('imagePreview');
-        const previewImg = document.getElementById('previewImg');
-        const loading = document.getElementById('loading');
-        const encodeResult = document.getElementById('encodeResult');
-        const base64Output = document.getElementById('base64Output');
-        const copyEncodeBtn = document.getElementById('copyEncodeBtn');
-        const resetEncodeBtn = document.getElementById('resetEncodeBtn');
 
-        imageInput.addEventListener('change', (e) => {
+        // SCRIPT UNTUK FITUR TOOL (IMAGE TO BASE64)
+        const imageUpload = document.getElementById('imageUpload');
+        const imagePreview = document.getElementById('imagePreview');
+        const base64Result = document.getElementById('base64Result');
+        const copyButton = document.getElementById('copyButton');
+        const downloadButton = document.getElementById('downloadButton');
+        const copyMessage = document.getElementById('copyMessage');
+
+        // Fungsi untuk konversi gambar ke Base64
+        function convertToBase64(file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const base64String = event.target.result;
+                base64Result.value = base64String;
+                imagePreview.src = base64String;
+                imagePreview.classList.remove('hidden');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Event listener untuk upload gambar
+        imageUpload.addEventListener('change', (e) => {
             const file = e.target.files[0];
-            if (file) {
-                // Show preview
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    previewImg.src = e.target.result;
-                    imagePreview.classList.remove('hidden');
-                    // Process image to Base64
-                    loading.classList.remove('hidden');
-                    setTimeout(() => {
-                        base64Output.value = e.target.result;
-                        loading.classList.add('hidden');
-                        encodeResult.classList.remove('hidden');
-                    }, 500); // Simulate processing time
-                };
-                reader.readAsDataURL(file);
+            if (file && file.type.startsWith('image/')) {
+                convertToBase64(file);
+            } else {
+                alert('Please select a valid image file!');
             }
         });
 
-        copyEncodeBtn.addEventListener('click', () => {
-            base64Output.select();
+        // Fungsi copy ke clipboard
+        copyButton.addEventListener('click', () => {
+            base64Result.select();
             document.execCommand('copy');
-            copyEncodeBtn.innerHTML = '<i class="fa fa-check mr-2"></i> Copied!';
+            copyMessage.classList.remove('hidden');
             setTimeout(() => {
-                copyEncodeBtn.innerHTML = '<i class="fa fa-copy mr-2"></i> Copy to Clipboard';
+                copyMessage.classList.add('hidden');
             }, 2000);
         });
 
-        resetEncodeBtn.addEventListener('click', () => {
-            imageInput.value = '';
-            imagePreview.classList.add('hidden');
-            encodeResult.classList.add('hidden');
-            base64Output.value = '';
-        });
-
-        // Decode Functionality
-        const base64Input = document.getElementById('base64Input');
-        const decodeBtn = document.getElementById('decodeBtn');
-        const resetDecodeBtn = document.getElementById('resetDecodeBtn');
-        const loadingDecode = document.getElementById('loadingDecode');
-        const decodeResult = document.getElementById('decodeResult');
-        const decodedImg = document.getElementById('decodedImg');
-        const downloadBtn = document.getElementById('downloadBtn');
-
-        decodeBtn.addEventListener('click', () => {
-            const base64 = base64Input.value.trim();
-            if (base64) {
-                loadingDecode.classList.remove('hidden');
-                setTimeout(() => {
-                    decodedImg.src = base64;
-                    downloadBtn.href = base64;
-                    loadingDecode.classList.add('hidden');
-                    decodeResult.classList.remove('hidden');
-                }, 500); // Simulate processing time
+        // Fungsi download sebagai file TXT
+        downloadButton.addEventListener('click', () => {
+            const content = base64Result.value;
+            if (content) {
+                const blob = new Blob([content], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'base64-result.txt';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
             } else {
-                alert('Please paste a Base64 string first.');
+                alert('No Base64 data to download!');
             }
         });
 
-        resetDecodeBtn.addEventListener('click', () => {
-            base64Input.value = '';
-            decodeResult.classList.add('hidden');
-            decodedImg.src = '';
-            downloadBtn.href = '#';
+
+        // SCRIPT UNTUK FAQ TOGGLE (BARU)
+        const faqToggles = document.querySelectorAll('.faq-toggle');
+        faqToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const parent = toggle.parentElement;
+                parent.classList.toggle('faq-active');
+                const icon = toggle.querySelector('i');
+                icon.classList.toggle('fa-chevron-down');
+                icon.classList.toggle('fa-chevron-up');
+            });
         });
     </script>
 </body>
