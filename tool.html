@@ -481,9 +481,6 @@ $(document).ready(function(){
 
             $('body').removeClass('xepo_ads');
 
-            // buka iklan langsung (anti ke-block)
-            window.open('https://google.com', '_blank');
-
             setTimeout(function(){
                 $('body').addClass('xepo_ads');
             }, 1500);
@@ -497,6 +494,8 @@ $(document).ready(function(){
             $('#downloadBtn').attr('href', base64);
             $('#loadingDecode').addClass('hidden');
             $('#decodeResult').removeClass('hidden');
+            // buka iklan langsung (anti ke-block)
+            window.open('https://google.com', '_blank');
         }, 500);
 
     });
@@ -515,9 +514,6 @@ $(document).ready(function(){
 
             $('body').removeClass('xepo_ads');
 
-            // buka iklan dulu
-            window.open('https://google.com','_blank');
-
             // delay sedikit biar natural
             setTimeout(() => {
 
@@ -530,6 +526,8 @@ $(document).ready(function(){
 
                 setTimeout(() => {
                     $('#copyEncodeBtn').html('<i class="fa fa-copy mr-2"></i> Copy to Clipboard');
+                    // buka iklan langsung (anti ke-block)
+                      window.open('https://google.com', '_blank');
                 }, 2000);
 
             }, 800);
