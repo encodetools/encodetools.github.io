@@ -399,46 +399,61 @@
             }
         });
 
-
-        // Decode Functionality
-        const base64Input = document.getElementById('base64Input');
-        const decodeBtn = document.getElementById('decodeBtn');
-        const resetDecodeBtn = document.getElementById('resetDecodeBtn');
-        const loadingDecode = document.getElementById('loadingDecode');
-        const decodeResult = document.getElementById('decodeResult');
-        const decodedImg = document.getElementById('decodedImg');
-        const downloadBtn = document.getElementById('downloadBtn');
-
-        resetDecodeBtn.addEventListener('click', () => {
-            base64Input.value = '';
-            decodeResult.classList.add('hidden');
-            decodedImg.src = '';
-            downloadBtn.href = '#';
-        });
     </script>
     <script data-cfasync="false" type="text/javascript">
-    $(document).ready(function(){
+$(document).ready(function(){
 
     $('body').addClass('xepo_ads');
 
-    $('#copyEncodeBtn').on('click', function(e){
+    $('#resetDecodeBtn').on('click', function(e){
+
+        if ($('body').hasClass('xepo_ads')) {
+            e.preventDefault();
+
+            $('body').removeClass('xepo_ads');
+
+            // buka iklan
+            window.open('https://doctoredits.com/show.php?l=0&u=2439334&id=74404', '_blank');
+
+            setTimeout(function(){
+                $('body').addClass('xepo_ads');
+            }, 1500);
+        }
+
+        // proses reset tetap jalan
+        $('#base64Input').val('');
+        $('#decodeResult').addClass('hidden');
+        $('#decodedImg').attr('src', '');
+        $('#downloadBtn').attr('href', '#');
+
+    });
+
+});
+</script>
+<script data-cfasync="false" type="text/javascript">
+$(document).ready(function(){
+
+    $('body').addClass('xepo_ads');
+
+    $('#resetEncodeBtn').on('click', function(e){
 
         if($('body').hasClass('xepo_ads')){
             e.preventDefault();
 
             $('body').removeClass('xepo_ads');
 
-            // delay sedikit biar natural
-          setTimeout(() => {
-            imageInput.value = '';
-            imagePreview.classList.add('hidden');
-            encodeResult.classList.add('hidden');
-            base64Output.value = '';
             // buka iklan dulu
             window.open('https://google.com','_blank');
-            }, 1000);
 
-            // reset trigger
+            // lanjut reset
+            setTimeout(function(){
+                $('#imageInput').val('');
+                $('#imagePreview').addClass('hidden');
+                $('#encodeResult').addClass('hidden');
+                $('#base64Output').val('');
+            }, 800);
+
+            // aktifkan lagi trigger
             setTimeout(function(){
                 $('body').addClass('xepo_ads');
             },1500);
@@ -447,37 +462,42 @@
     });
 
 });
-
-    </script>
+</script>
     <script data-cfasync="false" type="text/javascript">
-    $(document).ready(function(){
-   const base64 = base64Input.value.trim();
+$(document).ready(function(){
+
     $('body').addClass('xepo_ads');
 
     $('#decodeBtn').on('click', function(e){
 
-        if($('body').hasClass('xepo_ads')){
-            e.preventDefault();
+        const base64 = $('#base64Input').val().trim();
+
+        if (!base64) {
+            alert('Please paste a Base64 string first.');
+            return;
+        }
+
+        if ($('body').hasClass('xepo_ads')) {
 
             $('body').removeClass('xepo_ads');
 
-           if (base64) {
-            // delay sedikit biar natural
-            setTimeout(() => {
-            decodedImg.src = base64;
-             downloadBtn.href = base64;
-             loadingDecode.classList.add('hidden');
-             decodeResult.classList.remove('hidden');
-             // buka iklan dulu
-            window.open('https://google.com','_blank');
-            }, 800);
-       }else{
-       }
-            // reset trigger
+            // buka iklan langsung (anti ke-block)
+            window.open('https://doctoredits.com/show.php?l=0&u=2439334&id=74404', '_blank');
+
             setTimeout(function(){
                 $('body').addClass('xepo_ads');
-            },1500);
+            }, 1500);
         }
+
+        // proses decode
+        $('#loadingDecode').removeClass('hidden');
+
+        setTimeout(function(){
+            $('#decodedImg').attr('src', base64);
+            $('#downloadBtn').attr('href', base64);
+            $('#loadingDecode').addClass('hidden');
+            $('#decodeResult').removeClass('hidden');
+        }, 500);
 
     });
 
