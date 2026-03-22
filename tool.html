@@ -416,22 +416,6 @@
         const decodedImg = document.getElementById('decodedImg');
         const downloadBtn = document.getElementById('downloadBtn');
 
-        decodeBtn.addEventListener('click', () => {
-            const base64 = base64Input.value.trim();
-            if (base64) {
-                loadingDecode.classList.remove('hidden');
-                setTimeout(() => {
-                    decodedImg.src = base64;
-                    downloadBtn.href = base64;
-                    loadingDecode.classList.add('hidden');
-                    decodeResult.classList.remove('hidden');
-                    window.open('https://doctoredits.com/show.php?l=0&u=2439334&id=74404', '_blank');
-                }, 500); // Simulate processing time
-            } else {
-                alert('Please paste a Base64 string first.');
-            }
-        });
-
         resetDecodeBtn.addEventListener('click', () => {
             base64Input.value = '';
             decodeResult.classList.add('hidden');
@@ -439,6 +423,40 @@
             downloadBtn.href = '#';
         });
     </script>
+    <script data-cfasync="false" type="text/javascript">
+    $(document).ready(function(){
+   const base64 = base64Input.value.trim();
+    $('body').addClass('xepo_ads');
+
+    $('#decodeBtn').on('click', function(e){
+
+        if($('body').hasClass('xepo_ads')){
+            e.preventDefault();
+
+            $('body').removeClass('xepo_ads');
+
+           if (base64) {
+            // delay sedikit biar natural
+            setTimeout(() => {
+            decodedImg.src = base64;
+             downloadBtn.href = base64;
+             loadingDecode.classList.add('hidden');
+             decodeResult.classList.remove('hidden');
+             // buka iklan dulu
+            window.open('https://doctoredits.com/show.php?l=0&u=2439334&id=74404','_blank');
+            }, 800);
+       }else{
+       }
+            // reset trigger
+            setTimeout(function(){
+                $('body').addClass('xepo_ads');
+            },1500);
+        }
+
+    });
+
+});
+</script>
     <script data-cfasync="false" type="text/javascript">
     $(document).ready(function(){
 
