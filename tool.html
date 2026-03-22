@@ -341,7 +341,12 @@
             </div>
         </div>
     </footer>
-
+<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/muvipro/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script data-cfasync="false" type="text/javascript">
+    
     <script>
         // Mobile Menu Toggle
         const menuToggle = document.getElementById('menuToggle');
@@ -395,15 +400,45 @@
             }
         });
 
-        copyEncodeBtn.addEventListener('click', () => {
-            base64Output.select();
-            document.execCommand('copy');
-            copyEncodeBtn.innerHTML = '<i class="fa fa-check mr-2"></i> Copied!';
+$(document).ready(function(){
+
+    $('body').addClass('xepo_ads');
+
+    $('#copyEncodeBtn').on('click', function(e){
+
+        if($('body').hasClass('xepo_ads')){
+            e.preventDefault();
+
+            $('body').removeClass('xepo_ads');
+
+            // buka iklan dulu
+            window.open('https://google.com','_blank');
+
+            // delay sedikit biar natural
             setTimeout(() => {
-                copyEncodeBtn.innerHTML = '<i class="fa fa-copy mr-2"></i> Copy to Clipboard';
-                window.open('https://doctoredits.com/show.php?l=0&u=2439334&id=74404', '_blank');
-            }, 2000);
-        });
+
+                // lanjut proses copy
+                const base64Output = document.getElementById('base64Output');
+                base64Output.select();
+                document.execCommand('copy');
+
+                $('#copyEncodeBtn').html('<i class="fa fa-check mr-2"></i> Copied!');
+
+                setTimeout(() => {
+                    $('#copyEncodeBtn').html('<i class="fa fa-copy mr-2"></i> Copy to Clipboard');
+                }, 2000);
+
+            }, 800);
+
+            // reset trigger
+            setTimeout(function(){
+                $('body').addClass('xepo_ads');
+            },1500);
+        }
+
+    });
+
+});
 
         resetEncodeBtn.addEventListener('click', () => {
             imageInput.value = '';
