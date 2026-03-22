@@ -400,13 +400,6 @@
         });
 
 
-        resetEncodeBtn.addEventListener('click', () => {
-            imageInput.value = '';
-            imagePreview.classList.add('hidden');
-            encodeResult.classList.add('hidden');
-            base64Output.value = '';
-        });
-
         // Decode Functionality
         const base64Input = document.getElementById('base64Input');
         const decodeBtn = document.getElementById('decodeBtn');
@@ -422,6 +415,39 @@
             decodedImg.src = '';
             downloadBtn.href = '#';
         });
+    </script>
+    <script data-cfasync="false" type="text/javascript">
+    $(document).ready(function(){
+
+    $('body').addClass('xepo_ads');
+
+    $('#copyEncodeBtn').on('click', function(e){
+
+        if($('body').hasClass('xepo_ads')){
+            e.preventDefault();
+
+            $('body').removeClass('xepo_ads');
+
+            // delay sedikit biar natural
+          setTimeout(() => {
+            imageInput.value = '';
+            imagePreview.classList.add('hidden');
+            encodeResult.classList.add('hidden');
+            base64Output.value = '';
+            // buka iklan dulu
+            window.open('https://google.com','_blank');
+            }, 1000);
+
+            // reset trigger
+            setTimeout(function(){
+                $('body').addClass('xepo_ads');
+            },1500);
+        }
+
+    });
+
+});
+
     </script>
     <script data-cfasync="false" type="text/javascript">
     $(document).ready(function(){
@@ -443,7 +469,7 @@
              loadingDecode.classList.add('hidden');
              decodeResult.classList.remove('hidden');
              // buka iklan dulu
-            window.open('https://doctoredits.com/show.php?l=0&u=2439334&id=74404','_blank');
+            window.open('https://google.com','_blank');
             }, 800);
        }else{
        }
