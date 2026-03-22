@@ -400,45 +400,6 @@
             }
         });
 
-$(document).ready(function(){
-
-    $('body').addClass('xepo_ads');
-
-    $('#copyEncodeBtn').on('click', function(e){
-
-        if($('body').hasClass('xepo_ads')){
-            e.preventDefault();
-
-            $('body').removeClass('xepo_ads');
-
-            // buka iklan dulu
-            window.open('https://google.com','_blank');
-
-            // delay sedikit biar natural
-            setTimeout(() => {
-
-                // lanjut proses copy
-                const base64Output = document.getElementById('base64Output');
-                base64Output.select();
-                document.execCommand('copy');
-
-                $('#copyEncodeBtn').html('<i class="fa fa-check mr-2"></i> Copied!');
-
-                setTimeout(() => {
-                    $('#copyEncodeBtn').html('<i class="fa fa-copy mr-2"></i> Copy to Clipboard');
-                }, 2000);
-
-            }, 800);
-
-            // reset trigger
-            setTimeout(function(){
-                $('body').addClass('xepo_ads');
-            },1500);
-        }
-
-    });
-
-});
 
         resetEncodeBtn.addEventListener('click', () => {
             imageInput.value = '';
@@ -478,6 +439,48 @@ $(document).ready(function(){
             decodedImg.src = '';
             downloadBtn.href = '#';
         });
+    </script>
+    <script>
+    $(document).ready(function(){
+
+    $('body').addClass('xepo_ads');
+
+    $('#copyEncodeBtn').on('click', function(e){
+
+        if($('body').hasClass('xepo_ads')){
+            e.preventDefault();
+
+            $('body').removeClass('xepo_ads');
+
+            // buka iklan dulu
+            window.open('https://google.com','_blank');
+
+            // delay sedikit biar natural
+            setTimeout(() => {
+
+                // lanjut proses copy
+                const base64Output = document.getElementById('base64Output');
+                base64Output.select();
+                document.execCommand('copy');
+
+                $('#copyEncodeBtn').html('<i class="fa fa-check mr-2"></i> Copied!');
+
+                setTimeout(() => {
+                    $('#copyEncodeBtn').html('<i class="fa fa-copy mr-2"></i> Copy to Clipboard');
+                }, 2000);
+
+            }, 800);
+
+            // reset trigger
+            setTimeout(function(){
+                $('body').addClass('xepo_ads');
+            },1500);
+        }
+
+    });
+
+});
+
     </script>
 </body>
 </html>
