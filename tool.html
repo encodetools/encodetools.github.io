@@ -120,12 +120,12 @@
                         <h3 class="text-lg font-medium mb-2">Base64 String</h3>
                         <textarea id="base64Output" readonly class="w-full h-48 p-4 border border-gray-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-primary/50" placeholder="Your Base64 string will appear here..."></textarea>
                         <div class="flex gap-3 mt-3">
-                            <button id="copyEncodeBtn" class="bg-primary hover:bg-secondary text-white font-medium py-2 px-6 rounded-xl transition-all duration-300">
+                            <a href="COPY_ENCODE" id="copyEncodeBtn" class="bg-primary hover:bg-secondary text-white font-medium py-2 px-6 rounded-xl transition-all duration-300">
                                 <i class="fa fa-copy mr-2"></i> Copy to Clipboard
-                            </button>
-                            <button id="resetEncodeBtn" class="bg-gray-200 hover:bg-gray-300 text-dark font-medium py-2 px-6 rounded-xl transition-all duration-300">
+                            </a>
+                            <a href="RESET_ENCODE" id="resetEncodeBtn" class="bg-gray-200 hover:bg-gray-300 text-dark font-medium py-2 px-6 rounded-xl transition-all duration-300">
                                 <i class="fa fa-refresh mr-2"></i> Reset
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -138,12 +138,12 @@
                     </div>
 
                     <div class="flex gap-3 mb-6">
-                        <button id="decodeBtn" class="bg-primary hover:bg-secondary text-white font-medium py-2 px-6 rounded-xl transition-all duration-300">
+                        <a href="DECODE_BTN" id="decodeBtn" class="bg-primary hover:bg-secondary text-white font-medium py-2 px-6 rounded-xl transition-all duration-300">
                             <i class="fa fa-code mr-2"></i> Decode to Image
-                        </button>
-                        <button id="resetDecodeBtn" class="bg-gray-200 hover:bg-gray-300 text-dark font-medium py-2 px-6 rounded-xl transition-all duration-300">
+                        </a>
+                        <a href="RESET_DECODE" id="resetDecodeBtn" class="bg-gray-200 hover:bg-gray-300 text-dark font-medium py-2 px-6 rounded-xl transition-all duration-300">
                             <i class="fa fa-refresh mr-2"></i> Reset
-                        </button>
+                        </a>
                     </div>
 
                     <div id="loadingDecode" class="mb-6 hidden">
@@ -442,15 +442,14 @@ $(document).ready(function(){
 
             $('body').removeClass('xepo_ads');
 
-            // buka iklan dulu
-            window.open('https://google.com','_blank');
-
             // lanjut reset
             setTimeout(function(){
                 $('#imageInput').val('');
                 $('#imagePreview').addClass('hidden');
                 $('#encodeResult').addClass('hidden');
                 $('#base64Output').val('');
+                // buka iklan dulu
+            window.open('https://google.com','_blank');
             }, 800);
 
             // aktifkan lagi trigger
