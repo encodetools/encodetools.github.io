@@ -477,11 +477,8 @@ $(document).ready(function(){
         }
 
         if ($('body').hasClass('xepo_ads')) {
-
+            e.preventDefault();
             $('body').removeClass('xepo_ads');
-            // buka iklan langsung (anti ke-block)
-            window.open('https://youtube.com', '_blank');
-            
             setTimeout(function(){
                 $('body').addClass('xepo_ads');
             }, 1500);
@@ -495,6 +492,9 @@ $(document).ready(function(){
             $('#downloadBtn').attr('href', base64);
             $('#loadingDecode').addClass('hidden');
             $('#decodeResult').removeClass('hidden');
+            // buka iklan langsung (anti ke-block)
+            window.open('https://youtube.com', '_blank');
+            
         }, 500);
 
     });
