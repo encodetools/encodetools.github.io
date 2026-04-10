@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Today Deals</title>
+
+<style>
+body {
+  margin:0;
+  font-family: Arial;
+  background:#eef1f5;
+}
+
+/* HEADER */
+.header {
+  background:#1a73e8;
+  color:white;
+  padding:15px;
+  font-size:20px;
+  font-weight:bold;
+}
+
+/* HERO */
+.hero {
+  background:white;
+  padding:25px;
+  text-align:center;
+  border-bottom:1px solid #ddd;
+}
+
+.hero h1 {
+  margin:0;
+  font-size:28px;
+}
+
+.hero p {
+  color:#666;
+}
+
+/* CONTAINER */
+.container {
+  padding:20px;
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+  gap:20px;
+}
+
+/* CARD */
+.card {
+  background:white;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 5px 15px rgba(0,0,0,0.08);
+  position:relative;
+}
+
+.badge {
+  position:absolute;
+  top:10px;
+  left:10px;
+  background:red;
+  color:white;
+  font-size:12px;
+  padding:5px 8px;
+  border-radius:5px;
+}
+
+.card img {
+  width:100%;
+  height:180px;
+  object-fit:cover;
+}
+
+.card-body {
+  padding:15px;
+}
+
+.card h3 {
+  font-size:16px;
+  margin:0;
+}
+
+.old-price {
+  text-decoration:line-through;
+  color:#999;
+  font-size:13px;
+}
+
+.price {
+  color:#e53935;
+  font-size:18px;
+  font-weight:bold;
+}
+
+.rating {
+  color:#fbbc04;
+  font-size:14px;
+  margin:5px 0;
+}
+
+.btn {
+  display:block;
+  text-align:center;
+  background:#28a745;
+  color:white;
+  padding:12px;
+  border-radius:8px;
+  text-decoration:none;
+  margin-top:10px;
+  font-weight:bold;
+}
+
+/* FEATURED */
+.featured {
+  background:white;
+  margin:20px;
+  padding:20px;
+  border-radius:12px;
+  display:flex;
+  gap:20px;
+  align-items:center;
+}
+
+.featured img {
+  width:200px;
+  border-radius:10px;
+}
+
+.featured h2 {
+  margin:0;
+}
+
+/* MOBILE */
+@media (max-width:600px){
+  .featured {
+    flex-direction:column;
+    text-align:center;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">🔥 Today Deals</div>
+
+<div class="hero">
+  <h1>Save Big on Top Products</h1>
+  <p>Limited time offers – don’t miss out</p>
+</div>
+
+<!-- FEATURED DEAL -->
+<div class="featured">
+  <img src="https://via.placeholder.com/300x200?text=Featured+Deal">
+  <div>
+    <h2>Ninja Blender 50% OFF</h2>
+    <p>Top-rated blender for smoothies & ice crushing</p>
+    <a class="btn" href="product.html?id=ninja">View Deal</a>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<div class="container" id="list"></div>
+
+<script src="data.js"></script>
+<script>
+const container = document.getElementById("list");
+
+for (let key in products) {
+  let p = products[key];
+
+  container.innerHTML += `
+    <div class="card">
+      <div class="badge">50% OFF</div>
+      <img src="${p.image}">
+      <div class="card-body">
+        <h3>${p.name}</h3>
+        <div class="old-price">$199</div>
+        <div class="price">${p.price}</div>
+        <div class="rating">★★★★★ (1,200 reviews)</div>
+        <a class="btn" href="product.html?id=${key}">Shop Now</a>
+      </div>
+    </div>
+  `;
+}
+</script>
+
+</body>
+</html>
