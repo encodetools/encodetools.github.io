@@ -1,111 +1,77 @@
-const products = {
+airpods: {
+  name: "Wireless Earbuds Pro",
+  price: "$39",
+  oldPrice: "$99",
+  discount: "60% OFF",
+  rating: "★★★★★",
+  reviews: "2,341",
+  image: "https://via.placeholder.com/400x300?text=Earbuds",
+  desc: "Premium wireless earbuds with noise cancellation.",
+  features: ["Bluetooth 5.0","Long battery","Fast charging"],
+  link: "https://example.com"
+},
 
-  ninja: {
-    name: "Ninja Professional Plus Blender",
-    price: "$99",
-    oldPrice: "$199",
-    discount: "50% OFF",
-    rating: "★★★★★",
-    reviews: "1,284",
-    image: "https://via.placeholder.com/400x300?text=Ninja+Blender",
-    desc: "The Ninja Professional Plus Blender delivers powerful performance with 1400 peak watts. Perfect for smoothies, frozen drinks, and ice crushing.",
-    features: [
-      "1400W powerful motor",
-      "Auto-iQ technology",
-      "Large 72oz pitcher",
-      "Dishwasher safe parts"
-    ],
-    link: "#"
-  },
+tv: {
+  name: "Smart TV 50 Inch 4K",
+  price: "$399",
+  oldPrice: "$699",
+  discount: "43% OFF",
+  rating: "★★★★★",
+  reviews: "1,102",
+  image: "https://via.placeholder.com/400x300?text=Smart+TV",
+  desc: "Ultra HD smart TV with streaming apps.",
+  features: ["4K resolution","HDR","Smart apps"],
+  link: "https://example.com"
+},
 
-  coffee: {
-    name: "Cuisinart Coffee Maker",
-    price: "$49",
-    oldPrice: "$89",
-    discount: "45% OFF",
-    rating: "★★★★☆",
-    reviews: "842",
-    image: "https://via.placeholder.com/400x300?text=Coffee+Maker",
-    desc: "Brew the perfect cup every time with this easy-to-use programmable coffee maker. Ideal for home and office use.",
-    features: [
-      "Programmable timer",
-      "Auto shut-off",
-      "12-cup capacity",
-      "Compact design"
-    ],
-    link: "#"
-  },
+laptop: {
+  name: "Gaming Laptop RTX",
+  price: "$899",
+  oldPrice: "$1299",
+  discount: "30% OFF",
+  rating: "★★★★★",
+  reviews: "764",
+  image: "https://via.placeholder.com/400x300?text=Laptop",
+  desc: "High performance gaming laptop.",
+  features: ["RTX GPU","SSD","16GB RAM"],
+  link: "https://example.com"
+},
 
-  vacuum: {
-    name: "Shark Vacuum Cleaner",
-    price: "$129",
-    oldPrice: "$249",
-    discount: "48% OFF",
-    rating: "★★★★★",
-    reviews: "2,104",
-    image: "https://via.placeholder.com/400x300?text=Vacuum+Cleaner",
-    desc: "Deep clean your home with this powerful Shark vacuum. Designed for carpets and hard floors with strong suction.",
-    features: [
-      "Anti-allergen seal",
-      "Lightweight design",
-      "Strong suction power",
-      "Multi-surface cleaning"
-    ],
-    link: "#"
-  },
+chair: {
+  name: "Ergonomic Office Chair",
+  price: "$120",
+  oldPrice: "$240",
+  discount: "50% OFF",
+  rating: "★★★★☆",
+  reviews: "532",
+  image: "https://via.placeholder.com/400x300?text=Chair",
+  desc: "Comfortable chair for long work sessions.",
+  features: ["Lumbar support","Adjustable","Breathable"],
+  link: "https://example.com"
+},
 
-  airfryer: {
-    name: "Air Fryer XL 5.5L",
-    price: "$79",
-    oldPrice: "$149",
-    discount: "47% OFF",
-    rating: "★★★★★",
-    reviews: "965",
-    image: "https://via.placeholder.com/400x300?text=Air+Fryer",
-    desc: "Cook healthier meals with little to no oil using this powerful air fryer. Crispy results every time.",
-    features: [
-      "5.5L large capacity",
-      "Rapid air technology",
-      "Easy to clean",
-      "Digital touch control"
-    ],
-    link: "#"
-  },
+phone: {
+  name: "Smartphone Pro Max",
+  price: "$699",
+  oldPrice: "$999",
+  discount: "30% OFF",
+  rating: "★★★★★",
+  reviews: "1,876",
+  image: "https://via.placeholder.com/400x300?text=Phone",
+  desc: "Flagship smartphone with amazing camera.",
+  features: ["OLED display","Fast CPU","Great camera"],
+  link: "https://example.com"
+},
 
-  headphones: {
-    name: "Wireless Noise Cancelling Headphones",
-    price: "$59",
-    oldPrice: "$120",
-    discount: "50% OFF",
-    rating: "★★★★☆",
-    reviews: "1,542",
-    image: "https://via.placeholder.com/400x300?text=Headphones",
-    desc: "Experience immersive sound with active noise cancellation. Perfect for travel, work, and gaming.",
-    features: [
-      "Noise cancelling tech",
-      "Bluetooth 5.0",
-      "20h battery life",
-      "Comfort ear cushions"
-    ],
-    link: "#"
-  },
-
-  smartwatch: {
-    name: "Smartwatch Fitness Tracker",
-    price: "$39",
-    oldPrice: "$79",
-    discount: "50% OFF",
-    rating: "★★★★☆",
-    reviews: "732",
-    image: "https://via.placeholder.com/400x300?text=Smartwatch",
-    desc: "Track your fitness, heart rate, and sleep with this affordable smartwatch. Compatible with Android & iOS.",
-    features: [
-      "Heart rate monitor",
-      "Sleep tracking",
-      "Water resistant",
-      "Long battery life"
-    ],
-    link: "#"
-  }
-
-};
+watch: {
+  name: "Fitness Smartwatch",
+  price: "$59",
+  oldPrice: "$129",
+  discount: "54% OFF",
+  rating: "★★★★☆",
+  reviews: "903",
+  image: "https://via.placeholder.com/400x300?text=Watch",
+  desc: "Track health and activity daily.",
+  features: ["Heart rate","Sleep tracking","Waterproof"],
+  link: "https://example.com"
+}
